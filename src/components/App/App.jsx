@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+// import { nanoid } from "nanoid";
+
+import { addTodo } from "../../Redux/todo/todo-slice";
 
 import TodoList from "../TodoList/TodoList";
 import InputForm from "../InputForm/InputForm";
@@ -7,33 +10,35 @@ import InputForm from "../InputForm/InputForm";
 import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
+  const dispatch = useDispatch();
 
-  const addTodo = () => {
-    if (text.trim().length) {
-      setTodos([...todos, { id: nanoid(), text, completed: false }]);
+  const addTask = () => dispatch(addTodo({ text }));
 
-      setText("");
-    }
-  };
+  // const addTodo = () => {
+  //   if (text.trim().length) {
+  //     setTodos([...todos, { id: nanoid(), text, completed: false }]);
 
-  const toggleTodoCompleted = (todoId) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id !== todoId) return todo;
+  //     setText("");
+  //   }
+  // };
 
-        return {
-          ...todo,
-          completed: !todo.completed,
-        };
-      })
-    );
-  };
+  // const toggleTodoCompleted = (todoId) => {
+  // setTodos(
+  //   todos.map((todo) => {
+  //     if (todo.id !== todoId) return todo;
+  //     return {
+  //       ...todo,
+  //       completed: !todo.completed,
+  //     };
+  //   })
+  // );
+  // };
 
-  const removeTodo = (todoId) => {
-    setTodos(todos.filter((todo) => todo.id !== todoId));
-  };
+  // const removeTodo = (todoId) => {
+  // setTodos(todos.filter((todo) => todo.id !== todoId));
+  // };
 
   // const elements = todos.map((todo) => (
   //   <li key={todo.id}>
@@ -51,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <InputForm text={text} handleInput={setText} handleSubmit={addTodo} />
+      <InputForm text={text} handleInput={setText} handleSubmit={addTask} />
       {/* <label>
         <input
           value={text}
@@ -63,7 +68,10 @@ function App() {
       </label> */}
 
       {/* <ul>{elements}</ul> */}
-      <TodoList todos={todos} toggleTodoCompleted={toggleTodoCompleted} removeTodo={removeTodo} />
+      <TodoList
+      /*todos={todos} toggleTodoCompleted={toggleTodoCompleted}
+        removeTodo={removeTodo}*/
+      />
     </div>
   );
 }
