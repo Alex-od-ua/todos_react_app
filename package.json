@@ -2,6 +2,7 @@
   "name": "todos_react_app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Alex-od-ua.github.io/todos_react_app/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
