@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
-import { act } from "react-dom/test-utils";
 
 const initialState = {
   todos: [],
